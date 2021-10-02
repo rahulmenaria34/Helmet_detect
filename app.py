@@ -1,11 +1,6 @@
 from flask import Flask,render_template,request
 from flask_cors import cross_origin
 from detection import mobilenet, Decode
-import os
-from wsgiref import simple_server
-
-os.putenv('LANG', 'en_US.UTF-8')
-os.putenv('LC_ALL', 'en_US.UTF-8')
 
 app = Flask(__name__)
 
@@ -28,8 +23,4 @@ def result():
 
 
 if __name__=="__main__":
-    #app.run(port="5000")
-    port = int(os.getenv("PORT"))
-    host = '0.0.0.0'
-    httpd = simple_server.make_server(host=host, port=port, app=app)
-    httpd.serve_forever()
+    app.run(debug=True)
